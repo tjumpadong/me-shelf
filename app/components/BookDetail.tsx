@@ -41,15 +41,22 @@ export const BookDetail = ({ book, onClose }: { book: Book, onClose: () => void 
   const availableCategories = allCategories.filter(c => !categories.includes(c));
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-900 w-full max-w-md max-h-[90vh] overflow-y-auto rounded-lg shadow-xl p-6">
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 overflow-hidden">
+      <div className="bg-white dark:bg-gray-900 w-full max-w-sm max-h-[90vh] rounded-lg shadow-xl p-6 overflow-y-auto">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Edit Book</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl">&times;</button>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 truncate flex-1 min-w-0">Edit Book</h2>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-2xl flex-shrink-0 ml-2">&times;</button>
         </div>
-        <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded mb-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded mb-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
-        <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" placeholder="Publisher" value={publisher} onChange={(e) => setPublisher(e.target.value)} />
+        <div className="space-y-2">
+          <div className="w-full min-w-0">
+            <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 box-border" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          </div>
+          <div className="w-full min-w-0">
+            <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 box-border" placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
+          </div>
+          <div className="w-full min-w-0 mb-4">
+            <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 box-border" placeholder="Publisher" value={publisher} onChange={(e) => setPublisher(e.target.value)} />
+          </div>
         
         <div className="mb-4">
           <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Categories</label>
@@ -91,6 +98,7 @@ export const BookDetail = ({ book, onClose }: { book: Book, onClose: () => void 
           <button className="w-full p-3 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400 rounded hover:bg-red-200 dark:hover:bg-red-800 transition" onClick={() => setShowDeleteConfirm(true)}>Delete Book</button>
         )}
         <button className="w-full p-3 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition" onClick={onClose}>Cancel</button>
+        </div>
       </div>
     </div>
   );

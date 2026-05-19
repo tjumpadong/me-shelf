@@ -30,7 +30,7 @@ export default function Home() {
     .sort((a, b) => a.title.localeCompare(b.title));
 
   return (
-    <main className="w-full mx-auto p-4 pb-20">
+    <main className="w-full mx-auto p-4 pb-20 overflow-x-hidden">
       <h1 className="text-2xl font-bold mb-4">My Bookshelf</h1>
       
       <div className="flex flex-col gap-2 mb-4">
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="grid gap-0 w-full">
+      <div className="grid gap-0 w-full overflow-x-hidden">
         {filteredBooks.length > 0 ? (
           filteredBooks.map(b => (
             <BookCard 
