@@ -41,28 +41,28 @@ export const BookDetail = ({ book, onClose }: { book: Book, onClose: () => void 
   const availableCategories = allCategories.filter(c => !categories.includes(c));
 
   return (
-    <div className="fixed inset-0 bg-white p-6 z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-white dark:bg-gray-900 p-6 z-50 overflow-y-auto">
       <div className="max-w-md mx-auto">
-        <h2 className="text-2xl font-bold mb-6">Edit Book</h2>
-        <input className="w-full p-2 border mb-2 rounded" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input className="w-full p-2 border mb-2 rounded" placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
-        <input className="w-full p-2 border mb-4 rounded" placeholder="Publisher" value={publisher} onChange={(e) => setPublisher(e.target.value)} />
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-gray-100">Edit Book</h2>
+        <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded mb-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+        <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded mb-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" placeholder="Author" value={author} onChange={(e) => setAuthor(e.target.value)} />
+        <input className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded mb-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100" placeholder="Publisher" value={publisher} onChange={(e) => setPublisher(e.target.value)} />
         
         <div className="mb-4">
-          <label className="block text-sm font-semibold mb-2">Categories</label>
+          <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300">Categories</label>
           <div className="flex flex-wrap gap-2 mb-2">
             {categories.map(cat => (
-              <span key={cat} className="flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs">
+              <span key={cat} className="flex items-center gap-1 px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-xs">
                 {cat}
-                <button onClick={() => removeCategory(cat)} className="text-blue-500 hover:text-blue-700 font-bold ml-1">X</button>
+                <button onClick={() => removeCategory(cat)} className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-200 font-bold ml-1">X</button>
               </span>
             ))}
           </div>
           
           {showAddCategory ? (
             <div className="flex gap-2">
-              <select 
-                className="flex-1 p-2 border rounded text-sm"
+              <select
+                className="flex-1 p-2 border border-gray-300 dark:border-gray-700 rounded text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 onChange={(e) => addCategory(e.target.value)}
                 defaultValue=""
               >
@@ -71,23 +71,23 @@ export const BookDetail = ({ book, onClose }: { book: Book, onClose: () => void 
                   <option key={cat} value={cat}>{cat}</option>
                 ))}
               </select>
-              <button onClick={() => setShowAddCategory(false)} className="text-gray-500 hover:text-gray-700">Cancel</button>
+              <button onClick={() => setShowAddCategory(false)} className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">Cancel</button>
             </div>
           ) : (
-            <button onClick={() => setShowAddCategory(true)} className="text-sm text-blue-500 hover:text-blue-700">+ Add category</button>
+            <button onClick={() => setShowAddCategory(true)} className="text-sm text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">+ Add category</button>
           )}
         </div>
         
-        <button className="w-full p-3 bg-blue-500 text-white rounded mb-2 hover:bg-blue-600 transition" onClick={handleUpdate}>Update Book</button>
+        <button className="w-full p-3 bg-blue-500 dark:bg-blue-600 text-white rounded mb-2 hover:bg-blue-600 dark:hover:bg-blue-700 transition" onClick={handleUpdate}>Update Book</button>
         {showDeleteConfirm ? (
           <div className="flex gap-2">
             <button className="flex-1 p-3 bg-red-500 text-white rounded hover:bg-red-600 transition" onClick={() => { deleteBook(book.id); onClose(); }}>Confirm Delete</button>
-            <button className="flex-1 p-3 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition" onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
+            <button className="flex-1 p-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition" onClick={() => setShowDeleteConfirm(false)}>Cancel</button>
           </div>
         ) : (
-          <button className="w-full p-3 bg-red-100 text-red-600 rounded hover:bg-red-200 transition" onClick={() => setShowDeleteConfirm(true)}>Delete Book</button>
+          <button className="w-full p-3 bg-red-100 dark:bg-red-900 text-red-600 dark:text-red-400 rounded hover:bg-red-200 dark:hover:bg-red-800 transition" onClick={() => setShowDeleteConfirm(true)}>Delete Book</button>
         )}
-        <button className="w-full p-3 text-gray-500 hover:text-gray-800 transition" onClick={onClose}>Cancel</button>
+        <button className="w-full p-3 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition" onClick={onClose}>Cancel</button>
       </div>
     </div>
   );
